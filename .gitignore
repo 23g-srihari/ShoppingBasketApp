@@ -1,9 +1,0 @@
-# Eclipse-specific files
-.classpath
-.project
-.settings/
-bin/
-
-# Build tools (optional)
-target/
-build/
