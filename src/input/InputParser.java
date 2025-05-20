@@ -4,7 +4,6 @@ import model.Item;
 
 public class InputParser {
 
-    // Parse a line of input like "1 imported box of chocolates at 10.00"
     public static Item parseItem(String line) {
         try {
             String[] parts = line.split(" at ");
@@ -15,11 +14,13 @@ public class InputParser {
             String name = quantityAndName[1];
 
             boolean isImported = name.toLowerCase().contains("imported");
-            boolean isExempt = name.toLowerCase().matches(".*(book|chocolate|pill).*");
+            boolean isExempt = name.toLowerCase().contains("book") ||
+                               name.toLowerCase().contains("chocolate") ||
+                               name.toLowerCase().contains("pill");
 
             return new Item(name, price, quantity, isImported, isExempt);
         } catch (Exception e) {
-            System.out.println("Invalid input format. Use: '1 book at 12.49'");
+            System.out.println("Invalid input format. Use '1 book at 12.49'");
             return null;
         }
     }

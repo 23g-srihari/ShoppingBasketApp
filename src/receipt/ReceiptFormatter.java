@@ -1,23 +1,22 @@
 package receipt;
 
 import model.Item;
+import model.ShoppingBasket;
 
 public class ReceiptFormatter {
 
-    // Formats the receipt as plain text
     public String format(Receipt receipt) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder output = new StringBuilder();
+        ShoppingBasket basket = receipt.getBasket();
 
-        for (Item item : receipt.getItems()) {
-            sb.append(String.format("%d %s: %.2f\n",
-                    item.getQuantity(),
-                    item.getName(),
-                    item.getTotalPriceWithTax()));
+        for (Item item : basket.getItems()) {
+            double itemTotal = item.getTotalPrice() + item.getTotalTax();
+            output.append(String.format("%d %s: %.2f%n", item.getQuantity(), item.getName(), itemTotal));
         }
 
-        sb.append(String.format("Sales Taxes: %.2f\n", receipt.getTotalTax()));
-        sb.append(String.format("Total: %.2f\n", receipt.getTotalPriceWithTax()));
+        output.append(String.format("Sales Taxes: %.2f%n", basket.getTotalTax()));
+        output.append(String.format("Total: %.2f%n", receipt.getTotalPriceWithTax()));
 
-        return sb.toString();
+        return output.toString();
     }
 }

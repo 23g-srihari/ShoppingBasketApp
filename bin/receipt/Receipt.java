@@ -1,6 +1,9 @@
 package receipt;
 
+import model.Item;
 import model.ShoppingBasket;
+
+import java.util.List;
 
 public class Receipt {
     private final ShoppingBasket basket;
@@ -9,8 +12,12 @@ public class Receipt {
         this.basket = basket;
     }
 
-    public ShoppingBasket getBasket() {
-        return basket;
+    public List<Item> getItems() {
+        return basket.getItems();
+    }
+
+    public double getTotalTax() {
+        return basket.getTotalTax();
     }
 
     public double getTotalPriceWithTax() {
