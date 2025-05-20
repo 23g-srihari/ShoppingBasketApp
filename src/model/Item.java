@@ -14,7 +14,7 @@ public class Item {
         this.quantity = quantity;
         this.isImported = isImported;
         this.isExempt = isExempt;
-        this.totalTax = calculateTax();  // cache on construction
+        this.totalTax = calculateTax();
     }
 
     public String getName() {
@@ -45,11 +45,22 @@ public class Item {
         return totalTax;
     }
 
+    public double getTotalPriceWithTax() {
+        return getTotalPrice() + totalTax;
+    }
+
     private double calculateTax() {
         double tax = 0.0;
-        if (!isExempt) tax += price * 0.10;
-        if (isImported) tax += price * 0.05;
-        return roundToTwoDecimalPlaces(tax * quantity);
+
+        if (!isExempt) {
+            tax += price * 0.10;
+        }
+        if (isImported) {
+            tax += price * 0.05;
+        }
+
+        tax *= quantity;
+        return roundToTwoDecimalPlaces(tax);
     }
 
     private double roundToTwoDecimalPlaces(double value) {
