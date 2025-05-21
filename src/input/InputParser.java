@@ -3,7 +3,6 @@ package input;
 import model.Item;
 
 public class InputParser {
-
     public static Item parseItem(String line) {
         try {
             String[] parts = line.split(" at ");
@@ -20,7 +19,7 @@ public class InputParser {
 
             return new Item(name, price, quantity, isImported, isExempt);
         } catch (Exception e) {
-            System.out.println("Invalid input format. Use '1 book at 12.49'");
+            System.out.println("Invalid input format. Please use '1 book at 12.49'");
             return null;
         }
     }

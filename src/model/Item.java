@@ -1,7 +1,5 @@
 package model;
 
-import tax.TaxCalculator;
-
 public class Item {
     private final String name;
     private final double price;
@@ -37,11 +35,11 @@ public class Item {
         return isExempt;
     }
 
-    public double getTotalPrice() {
+    public double getBaseTotalPrice() {
         return price * quantity;
     }
 
-    public double getTotalTax() {
-        return TaxCalculator.calculateTax(this);
+    public String getDisplayName() {
+        return name;
     }
 }

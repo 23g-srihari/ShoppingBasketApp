@@ -1,5 +1,7 @@
 package model;
 
+import tax.TaxCalculator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +16,15 @@ public class ShoppingBasket {
         return items;
     }
 
-    public double getTotalPrice() {
-        return items.stream().mapToDouble(Item::getTotalPrice).sum();
+    public double getTotalTax() {
+        return items.stream()
+                .mapToDouble(TaxCalculator::calculateTax)
+                .sum();
     }
 
-    public double getTotalTax() {
-        return items.stream().mapToDouble(Item::getTotalTax).sum();
+    public double getTotalPriceWithTax() {
+        return items.stream()
+                .mapToDouble(item -> item.getBaseTotalPrice() + TaxCalculator.calculateTax(item))
+                .sum();
     }
 }

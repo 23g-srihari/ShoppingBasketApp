@@ -10,7 +10,6 @@ public class TaxCalculator {
         if (!item.isExempt()) {
             tax += item.getPrice() * TaxRate.BASIC_SALES_TAX;
         }
-
         if (item.isImported()) {
             tax += item.getPrice() * TaxRate.IMPORT_DUTY;
         }

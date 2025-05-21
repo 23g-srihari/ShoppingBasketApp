@@ -1,9 +1,14 @@
 package receipt;
 
 public class ReceiptPrinter {
-    private final ReceiptFormatter formatter = new ReceiptFormatter();
+    private final ReceiptFormatter formatter;
+
+    public ReceiptPrinter(ReceiptFormatter formatter) {
+        this.formatter = formatter;
+    }
 
     public void print(Receipt receipt) {
-        System.out.println(formatter.format(receipt));
+        String output = formatter.format(receipt);
+        System.out.println(output);
     }
 }
